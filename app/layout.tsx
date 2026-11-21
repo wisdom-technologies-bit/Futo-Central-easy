@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { absoluteUrl, siteName, siteDescription } from '@/lib/seo'
-import { AdSenseLoader } from '@/components/adsense-loader'
+import { AdcashLoader } from '@/components/adcash-loader'
 import { getPublishedNotices } from '@/lib/notices-data'
 import { NoticeWidget } from '@/components/futo/notice-widget'
 
@@ -37,7 +37,7 @@ export default async function RootLayout({
       <body className="antialiased">
         {children}
         <NoticeWidget notices={publishedNotices} />
-        <AdSenseLoader />
+        <AdcashLoader />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

@@ -18,7 +18,7 @@ export function validateContact(input: Partial<ContactMessage>) { const errors: 
 export function validateSubmission(input: Partial<StorySubmission>) { const errors: Record<string,string> = {}; if (!input.fullName?.trim()) errors.fullName='Please enter your name.'; if (!input.email || !emailPattern.test(input.email)) errors.email='Please enter a valid email address.'; if (!input.title?.trim()) errors.title='Please enter a story title.'; if (!input.category) errors.category='Please choose a category.'; if (!input.summary?.trim()) errors.summary='Please add a brief summary.'; if (!input.content?.trim()) errors.content='Please provide story details.'; return errors }
 
 export const legalDocuments = {
-  privacy: { title: 'Privacy Policy', description: 'How FUTO Central handles information shared through this website.', updated: '26 August 2026' },
+  privacy: { title: 'Privacy Policy', description: 'How FUTO Central handles information shared through this website.', updated: '21 November 2026' },
   terms: { title: 'Terms of Use', description: 'The rules and conditions for using FUTO Central.', updated: '26 August 2026' },
   editorial: { title: 'FUTO Central Editorial Policy', description: 'The principles we follow when reporting, reviewing and publishing stories.', updated: '26 August 2026' },
 } as const
