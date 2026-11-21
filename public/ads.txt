@@ -1,1 +1,1 @@
-google.com, pub-5717691070315159, DIRECT, f08c47fec0942fa0
+# Add the Adcash ads.txt line here if Adcash provides one
