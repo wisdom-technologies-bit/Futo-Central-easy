@@ -70,7 +70,7 @@ export function ArticlePage({ article, related, mostRead = [] }: { article?: Art
                 {a.imported && a.sourceName ? <SourceNote sourceName={a.sourceName} /> : null}
               </div>
               <div className="share-row"><b><Share2 size={17} /> Share this story</b><button onClick={() => navigator.clipboard?.writeText(window.location.href)}><Copy size={16} /> Copy Link</button></div>
-              <div className="article-tags filed-under"><span>Filed under: </span>{a.tags.map((t, i) => <span key={t}>{i > 0 ? ', ' : ''}<a href={`/search?q=${encodeURIComponent(t)}`}>{t}</a></span>)}</div>
+              {a.tags.length > 0 ? <div className="article-tags filed-under"><span>Filed under: </span>{a.tags.map((t, i) => <span key={t}>{i > 0 ? ', ' : ''}<a href={`/search?q=${encodeURIComponent(t)}`}>{t}</a></span>)}</div> : null}
             </div>
             <aside className="article-sidebar">
               {mostReadStories.length ? (
@@ -87,7 +87,7 @@ export function ArticlePage({ article, related, mostRead = [] }: { article?: Art
                 </section>
               ) : null}
               {moreFromCategory.length ? (
-                <section className="sidebar-block">
+                <section className="sidebar-block sidebar-more">
                   <h2>More from this category</h2>
                   <div className="sidebar-list">
                     {moreFromCategory.map((item) => <a href={`/news/${item.slug}`} key={item.id}>{item.title}</a>)}
