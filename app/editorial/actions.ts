@@ -4,15 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { requireAdmin, requireRole, logoutAdmin } from '@/lib/editorial-auth'
 import { withDatabase } from '@/lib/db'
-import { sendNewsNotification } from '@/lib/onesignal'
-
-async function notifyOnce(id: string, article: { title: string; slug: string; image?: string }) {
-  try {
-    const claim = await withDatabase((db) => db.query(`UPDATE articles SET notification_sent_at = NOW() WHERE id = $1 AND status = 'published' AND notification_sent_at IS NULL RETURNING id`, [id]))
-    if (!claim.rowCount) return
-    try { await sendNewsNotification(article) } catch (error) { console.error('[v0] OneSignal notification failed:', error); await withDatabase((db) => db.query(`UPDATE articles SET notification_sent_at = NULL WHERE id = $1`, [id])) }
-  } catch (error) { console.error('[v0] OneSignal notification claim failed:', error) }
-}
+import { notifyOnce } from '@/lib/news-notify'
 
 const text = (value: unknown, max: number) => typeof value === 'string' ? value.trim().slice(0, max) : ''
 
