@@ -21,6 +21,10 @@ export type Article = {
   status?: string
   seoTitle?: string
   metaDescription?: string
+  /** True for stories pulled in by the education-news importer. */
+  imported?: boolean
+  /** Publisher name for imported stories. Never the source URL. */
+  sourceName?: string
 }
 
 export const images = {
